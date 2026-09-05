@@ -37,9 +37,14 @@ projects/<slug>/      Saída: briefing, referências, site e vídeo de cada clie
 
 ## O painel é o lugar de uso
 
-**O usuário trabalha no painel, não no chat.** É ele que dá cara de app ao produto: é onde a pessoa registra os pedidos, salva a chave e vê os sites prontos.
+**O usuário trabalha no painel, não no chat.** É ele que dá cara de app ao produto: é onde a pessoa registra os pedidos e vê os sites prontos.
 
-- **Abra o painel sempre**, assim que o app estiver preparado: `preview_start` name `studio` (porta 4517). Não espere ele pedir.
+Existem dois painéis, um por ambiente — veja a skill `comecar`, etapa 5, para o critério de qual usar:
+
+- **Claude Code desktop/CLI**: o servidor local (`app/server.mjs` + `app/ui/`), aberto com `preview_start` name `studio` (porta 4517).
+- **Claude Code remoto/web** (sem `preview_start`): uma página publicada como Artifact com banco de dados próprio — URL e detalhes em `app/painel-remoto.md`.
+
+- **Abra o painel sempre**, assim que o app estiver preparado. Não espere ele pedir.
 - Quando ele disser "roda o pedido" (ou similar), pegue o pedido pendente de `app/data/pedidos.json` e execute `criar-site`.
 - Ao terminar um projeto, marque o pedido como `concluido` no `pedidos.json` — é assim que ele aparece pronto na tela.
 - Os sites ficam acessíveis no painel em `/projects/<slug>/site/`.

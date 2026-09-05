@@ -5,9 +5,14 @@ description: Pipeline completo - analisa um perfil de Instagram, pesquisa refer�
 
 # Criar Site a partir de um Instagram
 
-Argumento esperado: URL ou @handle do Instagram. **Se não veio argumento** (ou o usuário disse "roda o pedido"), leia `app/data/pedidos.json` e pegue o pedido com `status: "pendente"` mais antigo — use `instagram`, `observacoes` (incorpore no briefing e no site), `comVideo` (se `false`, pule a etapa de vídeo) e `formatoVideo` (horizontal = 1920x1080, vertical = 1080x1920). Se não houver pedido pendente nem argumento, pergunte a URL ou mande o usuário abrir a interface (`preview_start` com name `studio`).
+Argumento esperado: URL ou @handle do Instagram. **Se não veio argumento** (ou o usuário disse "roda o pedido"), busque o pedido pendente mais antigo:
 
-Ao concluir a entrega, atualize o pedido em `app/data/pedidos.json` para `status: "concluido"`.
+- **Painel local** (`app/data/pedidos.json` existe e tem entradas): pegue o item com `status: "pendente"` mais antigo.
+- **Painel remoto** (publicado como Artifact — URL em `app/painel-remoto.md`): leia a coleção `pedidos` dessa URL (`action: "read_db"`, `db_op: "query"`, filtrando `status == "pendente"`) e pegue o mais antigo por `criadoEm`.
+
+Em ambos os casos use `instagram`, `observacoes` (incorpore no briefing e no site), `comVideo` (se `false`, pule a etapa de vídeo) e `formatoVideo` (horizontal = 1920x1080, vertical = 1080x1920). Se não houver pedido pendente nem argumento, pergunte a URL ou mande o usuário abrir o painel (skill `comecar`, etapa 5).
+
+Ao concluir a entrega, marque o pedido como `concluido` no mesmo lugar de onde ele veio — `app/data/pedidos.json` no painel local, ou `write_db` (`update`) no documento da coleção `pedidos` no painel remoto — e registre o resultado na coleção `projetos` do painel remoto (`slug`, `instagram`, `siteUrl`, `videoNota`, `atualizadoEm`), para ele aparecer em "Projetos entregues".
 
 Defina `slug` = handle em kebab-case (minúsculas, `.`/`_` viram `-`). Toda a saída vai em `projects/<slug>/`.
 
@@ -165,6 +170,7 @@ Se `ELEVENLABS_API_KEY` não estiver configurada, avise o usuário e ofereça: (
 
 ## Etapa 6 — Entrega
 
-1. Abra `projects/<slug>/site/index.html` no Browser pane para o usuário ver.
-2. Resuma: o que foi entendido do perfil, quais referências foram usadas, e o que foi gerado (caminhos dos arquivos).
+1. **Com Browser pane** (Claude Code desktop/CLI): abra `projects/<slug>/site/index.html` direto para o usuário ver.
+   **Sem Browser pane** (painel remoto): publique o próprio `index.html` do site como um Artifact autocontido (só a página, sem capacidades) e grave essa URL como `siteUrl` no documento do projeto na coleção `projetos` do painel. Se houver vídeo, mande o `promo.mp4` com `SendUserFile` para o usuário assistir.
+2. Resuma: o que foi entendido do perfil, quais referências foram usadas, e o que foi gerado (caminhos dos arquivos e, no modo remoto, os links publicados).
 3. Pergunte se quer ajustes — mudanças de copy, cor e seção são rápidas.

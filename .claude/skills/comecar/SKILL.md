@@ -57,15 +57,24 @@ Recebida a chave, **você mesmo salva** em `app/data/config.json` (campo `eleven
 
 ## 5. Abra o painel — é onde ele vai trabalhar
 
-Assim que o app estiver preparado, **abra o painel sem esperar ele pedir**:
+Assim que o app estiver preparado, **abra o painel sem esperar ele pedir**. O jeito certo depende de onde esta sessão está rodando:
+
+**Claude Code desktop/CLI** (existe a ferramenta `preview_start`):
 
 ```
 preview_start  name: studio
 ```
 
-Ele abre numa aba do navegador **dentro do próprio Claude Code**, ao lado da conversa. Diga isso a ele:
+Ele abre numa aba do navegador **dentro do próprio Claude Code**, ao lado da conversa.
 
-> Abri o painel aqui do lado. É por ali que você usa o app: cola o Instagram do cliente, clica em Registrar pedido, e me avisa "roda o pedido". Os sites prontos ficam listados nele também.
+**Claude Code remoto/web** (sem `preview_start`, sem navegador integrado — o servidor local roda dentro de um container que só você enxerga, então ele não serve pra nada aqui):
+
+1. Confira se já existe um painel publicado em `app/painel-remoto.md`. Se existir, use o link de lá — não publique outro.
+2. Se não existir, publique um com a ferramenta de Artifact deste ambiente, com capacidade de banco de dados (`db`), reproduzindo os campos do `app/ui/index.html` (Instagram, observações, vídeo sim/não, formato) e duas listas ao vivo: fila de pedidos (coleção `pedidos`) e projetos entregues (coleção `projetos`). Não guarde a chave da ElevenLabs nessa página nem tente validá-la por lá — isso continua acontecendo em conversa (etapa 4 acima). Depois de publicar, crie `app/painel-remoto.md` com a URL, pra não publicar de novo da próxima vez.
+
+Qualquer que seja o caso, diga isso a ele:
+
+> Abri o painel [aqui do lado / neste link: <url>]. É por ali que você usa o app: cola o Instagram do cliente, clica em Registrar pedido, e me avisa "roda o pedido". Os sites prontos ficam listados nele também.
 
 ## 6. Faça o site
 
