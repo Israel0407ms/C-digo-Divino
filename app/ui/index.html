@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SITES STUDIO · Anderson Ataider</title>
+<link rel="icon" type="image/png" href="/assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Saira+Condensed:ital,wght@1,700;1,800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #050608;
+    --panel: #0d1117;
+    --panel-2: #131a24;
+    --border: #1c2a3d;
+    --text: #eef2f7;
+    --muted: #8496ad;
+    --accent: #1c7ce0;
+    --accent-2: #4aa8ff;
+    --steel: #dfe6ee;
+    --ok: #34d399;
+    --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(28, 124, 224, 0.18) 0%, transparent 60%),
+      radial-gradient(700px 400px at -10% 30%, rgba(28, 124, 224, 0.08) 0%, transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  header { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; flex-wrap: wrap; }
+  .logo-img {
+    width: 74px; height: 74px; border-radius: 50%;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 22px rgba(28, 124, 224, 0.45);
+    object-fit: cover; background: #000;
+  }
+  .logo {
+    font-family: "Saira Condensed", "Arial Narrow", sans-serif;
+    font-style: italic; font-weight: 800;
+    font-size: 34px; letter-spacing: 1px; line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--steel);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+  }
+  .logo span { display: block; font-size: 19px; color: var(--accent-2); letter-spacing: 4px; }
+  .tagline { color: var(--muted); font-size: 14.5px; margin-left: auto; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px;
+  }
+  .card.full { grid-column: 1 / -1; }
+  h2 {
+    font-family: "Saira Condensed", "Arial Narrow", sans-serif;
+    font-style: italic; font-weight: 700;
+    font-size: 17px; text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--accent-2); margin-bottom: 16px;
+    padding-left: 12px; border-left: 3px solid var(--accent);
+  }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 14px 0 6px; }
+  input[type=text], input[type=password], textarea, select {
+    width: 100%; padding: 11px 13px; border-radius: 9px;
+    border: 1px solid var(--border); background: var(--panel-2);
+    color: var(--text); font-size: 14px; font-family: inherit; outline: none;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { min-height: 74px; resize: vertical; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .row > * { flex: 1; }
+  button {
+    margin-top: 18px; width: 100%; padding: 13px; border: none; border-radius: 8px;
+    background: linear-gradient(180deg, var(--accent-2), var(--accent) 55%, #0f5cb0);
+    color: white; font-size: 17px; font-weight: 700; cursor: pointer;
+    font-family: "Saira Condensed", "Arial Narrow", sans-serif;
+    font-style: italic; text-transform: uppercase; letter-spacing: 2px;
+    box-shadow: 0 4px 18px rgba(28, 124, 224, 0.35);
+  }
+  button:hover { filter: brightness(1.15); }
+  button.ghost {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    width: auto; padding: 6px 12px; margin: 0; font-size: 12px; font-weight: 500;
+  }
+  .toggle { display: flex; align-items: center; gap: 10px; margin-top: 14px; cursor: pointer; user-select: none; }
+  .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+  .hint {
+    margin-top: 16px; padding: 13px 15px; border-radius: 10px; font-size: 14px;
+    background: rgba(28, 124, 224, 0.12); border: 1px solid rgba(28, 124, 224, 0.4);
+    display: none; line-height: 1.5;
+  }
+  .hint.show { display: block; }
+  .hint code { background: var(--panel-2); padding: 2px 7px; border-radius: 6px; font-size: 13px; }
+  ul.lista { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.lista li {
+    background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    font-size: 14px; flex-wrap: wrap;
+  }
+  .badge { font-size: 11px; padding: 3px 9px; border-radius: 99px; font-weight: 700; letter-spacing: 0.5px; }
+  .badge.pendente { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+  .badge.concluido { background: rgba(52, 211, 153, 0.15); color: var(--ok); }
+  .links a { color: var(--accent-2); font-size: 13.5px; text-decoration: none; margin-left: 12px; }
+  .links a:hover { text-decoration: underline; }
+  .vazio { color: var(--muted); font-size: 13.5px; }
+  .status-chave { font-size: 13px; margin-top: 8px; }
+  .status-chave.ok { color: var(--ok); }
+  .status-chave.faltando { color: var(--warn); }
+  .nota-voz {
+    margin-top: 18px;
+    padding: 15px 16px;
+    border-radius: 10px;
+    background: rgba(28, 124, 224, 0.09);
+    border: 1px solid rgba(28, 124, 224, 0.28);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .nota-voz strong { display: block; color: var(--text); font-size: 14px; margin-bottom: 5px; }
+  .nota-voz span { display: block; margin-top: 10px; color: var(--accent-2); }
+  .nota-voz em { font-style: normal; font-weight: 600; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--panel-2); border: 1px solid var(--accent); border-radius: 10px;
+    padding: 12px 22px; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="logo-img" src="/assets/logo.png" alt="Anderson Ataider" />
+    <div class="logo">Anderson Ataider<span>Sites Studio</span></div>
+    <div class="tagline">Instagram → site profissional com vídeo narrado</div>
+  </header>
+
+  <div class="grid">
+    <div class="card full">
+      <h2>Novo site</h2>
+      <label for="instagram">Instagram do negócio</label>
+      <input type="text" id="instagram" placeholder="https://instagram.com/perfil ou @perfil" />
+      <label for="obs">Observações (opcional)</label>
+      <textarea id="obs" placeholder="Algo que o site precisa ter? Promoção atual, foco em delivery, cor preferida..."></textarea>
+      <div class="row">
+        <label class="toggle" style="margin-top:14px">
+          <input type="checkbox" id="comVideo" checked />
+          Gerar vídeo promocional narrado
+        </label>
+        <div>
+          <label for="formato">Formato do vídeo</label>
+          <select id="formato">
+            <option value="horizontal" selected>Horizontal (pro site) — 1920x1080</option>
+            <option value="vertical">Vertical (stories/reels) — 1080x1920</option>
+          </select>
+        </div>
+      </div>
+      <button id="btnPedido">Registrar pedido</button>
+      <div class="hint" id="hintPedido">
+        ✅ Pedido registrado! Agora volte à conversa do Claude e diga <code>roda o pedido</code> — o pipeline começa na hora.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Fila de pedidos</h2>
+      <ul class="lista" id="listaPedidos"><li class="vazio">Nenhum pedido ainda.</li></ul>
+    </div>
+
+    <div class="card">
+      <h2>Configurações · narração</h2>
+      <label for="chave">Chave da API ElevenLabs</label>
+      <input type="password" id="chave" placeholder="sk_..." autocomplete="off" />
+      <div class="status-chave" id="statusChave"></div>
+      <button id="btnConfig">Salvar configurações</button>
+      <div class="hint" id="hintConfig"></div>
+      <div class="nota-voz">
+        <strong>A voz da narração é escolhida automaticamente</strong>
+        Cada nicho pede um tom diferente — uma hamburgueria pede voz animada,
+        uma clínica pede voz calma. O app escolhe a voz brasileira mais adequada
+        ao negócio de cada cliente.
+        <span>Não gostou da narração? É só pedir na conversa: <em>"troca a voz do vídeo"</em>.</span>
+      </div>
+    </div>
+
+    <div class="card full">
+      <h2>Projetos gerados</h2>
+      <ul class="lista" id="listaProjetos"><li class="vazio">Nenhum projeto ainda — registre o primeiro pedido acima.</li></ul>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const toast = (msg) => {
+  $("toast").textContent = msg;
+  $("toast").classList.add("show");
+  setTimeout(() => $("toast").classList.remove("show"), 2600);
+};
+const api = async (path, dados) => {
+  const res = await fetch(path, dados ? {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados),
+  } : undefined);
+  return res.json();
+};
+
+async function atualizar() {
+  const s = await api("/api/state");
+
+  const st = $("statusChave");
+  if (s.config.temChaveElevenLabs) {
+    st.textContent = "✓ Chave configurada";
+    st.className = "status-chave ok";
+    $("chave").placeholder = "•••••••••••• (já salva — preencha só pra trocar)";
+  } else {
+    st.textContent = "⚠ Sem chave — os sites saem sem vídeo narrado";
+    st.className = "status-chave faltando";
+  }
+
+  const lp = $("listaPedidos");
+  lp.innerHTML = "";
+  if (!s.pedidos.length) lp.innerHTML = '<li class="vazio">Nenhum pedido ainda.</li>';
+  for (const p of s.pedidos.slice().reverse()) {
+    const li = document.createElement("li");
+    const badge = p.status === "pendente" ? "pendente" : "concluido";
+    li.innerHTML = `<span>${p.instagram}</span>
+      <span style="display:flex;gap:10px;align-items:center">
+        <span class="badge ${badge}">${p.status}</span>
+        <button class="ghost" data-id="${p.id}">remover</button>
+      </span>`;
+    li.querySelector("button").onclick = async (e) => {
+      await api("/api/pedido/remover", { id: e.target.dataset.id });
+      atualizar();
+    };
+    lp.appendChild(li);
+  }
+
+  const lj = $("listaProjetos");
+  lj.innerHTML = "";
+  if (!s.projetos.length) lj.innerHTML = '<li class="vazio">Nenhum projeto ainda — registre o primeiro pedido acima.</li>';
+  for (const pr of s.projetos) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${pr.slug}</span>
+      <span class="links">
+        ${pr.hasSite ? `<a href="/projects/${pr.slug}/site/" target="_blank">abrir site</a>` : ""}
+        ${pr.hasVideo ? `<a href="/projects/${pr.slug}/video/promo.mp4" target="_blank">ver vídeo</a>` : ""}
+        ${pr.hasBriefing ? `<a href="/projects/${pr.slug}/briefing.md" target="_blank">briefing</a>` : ""}
+      </span>`;
+    lj.appendChild(li);
+  }
+}
+
+$("btnPedido").onclick = async () => {
+  const r = await api("/api/pedido", {
+    instagram: $("instagram").value,
+    observacoes: $("obs").value,
+    comVideo: $("comVideo").checked,
+    formatoVideo: $("formato").value,
+  });
+  if (r.erro) return toast(r.erro);
+  $("instagram").value = "";
+  $("obs").value = "";
+  $("hintPedido").classList.add("show");
+  atualizar();
+};
+
+$("btnConfig").onclick = async () => {
+  const btn = $("btnConfig");
+  const hint = $("hintConfig");
+  const rotulo = btn.textContent;
+  btn.textContent = "Verificando...";
+  btn.disabled = true;
+  hint.classList.remove("show");
+
+  // A voz não é escolhida aqui: o pipeline seleciona por nicho, em cada projeto.
+  const r = await api("/api/config", { elevenLabsApiKey: $("chave").value });
+
+  btn.textContent = rotulo;
+  btn.disabled = false;
+
+  if (r.erro) {
+    hint.innerHTML = "⚠ " + r.erro;
+    hint.classList.add("show");
+    return;
+  }
+  $("chave").value = "";
+  hint.innerHTML = "✅ Tudo certo! A chave foi aceita. Já pode gerar vídeos com narração.";
+  hint.classList.add("show");
+  toast("Configurações salvas");
+  atualizar();
+};
+
+atualizar();
+setInterval(atualizar, 5000);
+</script>
+</body>
+</html>

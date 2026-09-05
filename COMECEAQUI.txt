@@ -1,0 +1,100 @@
+========================================
+  SITES STUDIO AAR
+========================================
+
+Cria um site profissional com video narrado
+a partir do Instagram de um negocio.
+
+
+----------------------------------------
+COMO COMECAR
+----------------------------------------
+
+  1. Descompacte esta pasta onde preferir
+
+  2. Abra a pasta no Claude Code
+
+  3. Escreva na conversa:
+
+        comecar
+
+O Claude prepara tudo sozinho (na primeira vez
+demora alguns minutos) e abre o PAINEL do app
+ali mesmo, do lado da conversa.
+
+Se ele precisar de alguma coisa - autorizar uma
+instalacao ou a chave da narracao - ele pede na
+hora e explica onde pegar.
+
+
+----------------------------------------
+COMO USAR O PAINEL
+----------------------------------------
+
+O painel abre dentro do proprio Claude Code,
+ao lado do chat. E nele que voce trabalha:
+
+  1. Cole o endereco do Instagram do cliente
+
+  2. Clique em REGISTRAR PEDIDO
+
+  3. Volte na conversa e escreva:
+
+        roda o pedido
+
+Pronto. O Claude analisa o perfil, monta o site
+e o video, e o projeto aparece na lista de
+PROJETOS GERADOS do painel, com links para
+abrir o site, ver o video e ler o briefing.
+
+Costuma levar de 15 a 40 minutos.
+
+
+----------------------------------------
+NA PRIMEIRA VEZ: A CHAVE DA NARRACAO
+----------------------------------------
+
+Para o video ter voz, o Claude vai te pedir uma
+chave da ElevenLabs. E gratuito para comecar:
+
+  1. Entre em elevenlabs.io e crie a conta
+  2. Clique na sua foto -> API Keys
+  3. Copie e cole no painel (ou na conversa)
+
+A voz e escolhida sozinha, conforme o tipo de
+negocio. Se nao gostar, peca: "troca a voz do video".
+
+
+----------------------------------------
+DEPOIS QUE O SITE FICAR PRONTO
+----------------------------------------
+
+Peca ajustes conversando. Por exemplo:
+
+  "muda a cor principal pra verde"
+  "tira a secao de depoimentos"
+  "poe o telefone no topo"
+
+Os sites ficam salvos na pasta:  projects
+
+
+----------------------------------------
+O QUE VOCE PRECISA TER
+----------------------------------------
+
+  - Claude Code  ->  claude.com/claude-code
+  - Conta na ElevenLabs (gratuita para comecar)
+
+O resto o proprio Claude instala.
+
+
+----------------------------------------
+SE O PAINEL FECHAR
+----------------------------------------
+
+E so escrever na conversa:  abre o studio
+
+
+========================================
+  Regras de uso: veja LICENCA.md
+========================================
